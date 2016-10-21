@@ -5,7 +5,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var CronJob = require('cron').CronJob;
+//var CronJob = require('cron').CronJob;
 
 var dbURL = 'mongodb://ticorailsdbo:root12345@ds041506.mlab.com:41506/ticorailsdb';
 
@@ -64,14 +64,14 @@ app.use(function(err, req, res, next) {
 });
 
 
-var job = new CronJob('0 */2 * * * *', function() {
-    console.log('Init \n');
+//var job = new CronJob('0 */2 * * * *', function() {
+/*    console.log('Init \n');
   }, function () {
     console.log('End \n');
   },
-  true /* Start the job right now */
-  //timeZone /* Time zone of this job. */
-);
+  true // Start the job right now 
+  //timeZone // Time zone of this job. 
+);*/
 
 
 app.listen(app.get('port'),function(){
