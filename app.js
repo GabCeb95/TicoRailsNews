@@ -5,7 +5,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-//var CronJob = require('cron').CronJob;
+var CronJob = require('cron').CronJob;
 
 var dbURL = 'mongodb://ticorailsdbo:root12345@ds041506.mlab.com:41506/ticorailsdb';
 
@@ -17,7 +17,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('port', (process.env.PORT));
+app.set('port', ( 3000));
 
 mongoose.connect(dbURL);
 
@@ -64,14 +64,14 @@ app.use(function(err, req, res, next) {
 });
 
 
-//var job = new CronJob('0 */2 * * * *', function() {
-/*    console.log('Init \n');
+var job = new CronJob('0 */2 * * * *', function() {
+    console.log('Init \n');
   }, function () {
     console.log('End \n');
   },
   true // Start the job right now 
   //timeZone // Time zone of this job. 
-);*/
+);
 
 
 app.listen(app.get('port'),function(){
