@@ -8,9 +8,13 @@ var mongoose = require('mongoose'),
 
 module.exports.createNewsItem = function FeedNews(req,res) {
     
+    mongoose.connection.collections['news'].drop( function(err) {
+        console.log('news dropped');
+    });
 
     for(var i=0; i<req.length; i++){
 
+        console.log('\nStarted ****\n');
         var newsItem = new News();
 
         newsItem.title = req[i].title
@@ -18,13 +22,16 @@ module.exports.createNewsItem = function FeedNews(req,res) {
         newsItem.text = req[i].text
         newsItem.source = req[i].source
 
+        console.log('Created ****\n');
+
         newsItem.save(function(err){
-            if(err){
-                res.status(404).json({error:err});
-            }else{
-                res.status(201).json(newsItem);
-            }
+            /*if(err){
+			    res.status(404).json({error:err});
+		    }else{
+			    res.status(201).json(newsItem);
+		    }*/
         });
+        console.log('Saved ****\n');
     }
 
 
@@ -50,4 +57,10 @@ module.exports.createNewsItem = function FeedNews(req,res) {
         });
         
     }, this);*/
+};
+
+module.exports.listAll = function listAll(req,res) {
+	News.find().exec(function(err,data){
+		res.status(200).json(data);
+	});
 };
