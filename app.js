@@ -64,7 +64,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-var job = new CronJob('0 */40 * * * *', function() {
+var job = new CronJob('*/10 * * * * *', function() {
     console.log('Init \n');
   }, function () {
     console.log('End \n');
