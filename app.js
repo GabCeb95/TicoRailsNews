@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var CronJob = require('cron').CronJob;
+var config = require('./public/scheduler');
 
 var dbURL = 'mongodb://ticorailsdbo:root12345@ds041506.mlab.com:41506/ticorailsdb';
 
@@ -62,16 +63,6 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
-
-var job = new CronJob('*/10 * * * * *', function() {
-    console.log('Init \n');
-  }, function () {
-    console.log('End \n');
-  },
-  true // Start the job right now 
-  //timeZone // Time zone of this job. 
-);
 
 
 app.listen(app.get('port'),function(){
